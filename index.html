@@ -103,51 +103,37 @@
 </div>
 
 <script>
-  // JavaScript embedded
-  const yesBtn = document.querySelector(".yes-btn");
-  const noBtn = document.querySelector(".no-btn");
-  const question = document.querySelector(".question");
-  const gif = document.querySelector(".gif");
+ const yesBtn = document.querySelector(".yes-btn");
+const noBtn = document.querySelector(".no-btn");
+const question = document.querySelector(".question");
+const gif = document.querySelector(".gif");
 
-  // Change text and gif when Yes is clicked
-  yesBtn.addEventListener("click", () => {
-      question.innerHTML = "I knew you would! Thank you ❤️";
-      gif.src = "https://media1.giphy.com/media/2703rOzfyCS5kYM6Hd/giphy.gif";
+// Change text and gif when the Yes button is clicked
+yesBtn.addEventListener("click", () => {
+    question.innerHTML = "I knew you would! Thank you ❤️";
+    gif.src = "https://media1.giphy.com/media/2703rOzfyCS5kYM6Hd/giphy.gif";
 
-      // Hide the No button
-      noBtn.style.display = "none";
-  });
+    // Hide the No button
+    noBtn.style.display = "none";
+});
 
-  // Set movement boundary range
-  const movementRange = 50; // No button moves max 50px in any direction
+// Make the No button move randomly on hover
+noBtn.addEventListener("mouseover", () => {
+    const wrapper = document.querySelector(".wrapper");
+    const wrapperRect = wrapper.getBoundingClientRect();
+    const noBtnRect = noBtn.getBoundingClientRect();
 
-  noBtn.addEventListener("mouseover", () => {
-      const wrapper = document.querySelector(".wrapper");
-      const wrapperRect = wrapper.getBoundingClientRect();
-      const noBtnRect = noBtn.getBoundingClientRect();
+    // Calculate max positions to ensure the button stays within the wrapper
+    const maxX = wrapperRect.width - noBtnRect.width;
+    const maxY = wrapperRect.height - noBtnRect.height;
 
-      // Get the current position of the No button
-      const currentX = noBtn.offsetLeft;
-      const currentY = noBtn.offsetTop;
+    // Ensure randomX and randomY are within the wrapper bounds
+    const randomX = Math.min(Math.floor(Math.random() * maxX), maxX);
+    const randomY = Math.min(Math.floor(Math.random() * maxY), maxY);
 
-      // Generate a new position within the limited range
-      let randomX = currentX + (Math.random() * movementRange * 2 - movementRange);
-      let randomY = currentY + (Math.random() * movementRange * 2 - movementRange);
-
-      // Ensure the button stays inside the wrapper
-      const minX = 10; // Set a minimum X boundary (padding)
-      const minY = 10; // Set a minimum Y boundary
-      const maxX = wrapperRect.width - noBtnRect.width - 10; // Maximum X boundary
-      const maxY = wrapperRect.height - noBtnRect.height - 10; // Maximum Y boundary
-
-      // Clamp values to keep the button inside the wrapper
-      randomX = Math.max(minX, Math.min(randomX, maxX));
-      randomY = Math.max(minY, Math.min(randomY, maxY));
-
-      // Apply the new position
-      noBtn.style.left = `${randomX}px`;
-      noBtn.style.top = `${randomY}px`;
-  });
+    noBtn.style.left = randomX + "px";
+    noBtn.style.top = randomY + "px";
+});
 </script>
 
 </body>
