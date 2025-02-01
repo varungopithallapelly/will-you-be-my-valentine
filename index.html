@@ -4,9 +4,95 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Random No Button</title>
-  <link rel="stylesheet" href="design.css" />
+  <style>
+    /* Embedded CSS */
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Poppins', Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: linear-gradient(135deg, #ffafbd, #ffc3a0);
+        color: #333;
+    }
+
+    .wrapper {
+        position: relative;
+        width: 90%;
+        max-width: 500px;
+        text-align: center;
+        background: white;
+        padding: 30px 20px;
+        border-radius: 15px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .question {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 20px;
+        color: #333;
+    }
+
+    .gif {
+        max-width: 100%;
+        height: auto;
+        margin-bottom: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn-group {
+        display: flex;
+        justify-content: space-around;
+        gap: 15px;
+    }
+
+    button {
+        padding: 12px 30px;
+        font-size: 18px;
+        font-weight: bold;
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+        transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+
+    button:focus {
+        outline: none;
+    }
+
+    .yes-btn {
+        background-color: #4caf50;
+        color: white;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .yes-btn:hover {
+        background-color: #45a049;
+        transform: scale(1.05);
+    }
+
+    .no-btn {
+        position: absolute;
+        background-color: #ff4d4d;
+        color: white;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .no-btn:hover {
+        background-color: #e43e3e;
+        transform: scale(1.05);
+    }
+  </style>
 </head>
 <body>
+
 <div class="wrapper">
   <h2 class="question">Will you be my Valentine?</h2>
   <img class="gif" alt="gif" src="https://media3.giphy.com/media/ISOckXUybVfQ4/giphy.gif" />
@@ -15,6 +101,55 @@
     <button class="no-btn">No</button>
   </div>
 </div>
-<script src="script.js"></script>
+
+<script>
+  // JavaScript embedded
+  const yesBtn = document.querySelector(".yes-btn");
+  const noBtn = document.querySelector(".no-btn");
+  const question = document.querySelector(".question");
+  const gif = document.querySelector(".gif");
+
+  // Change text and gif when Yes is clicked
+  yesBtn.addEventListener("click", () => {
+      question.innerHTML = "I knew you would! Thank you ❤️";
+      gif.src = "https://media1.giphy.com/media/2703rOzfyCS5kYM6Hd/giphy.gif";
+
+      // Hide the No button
+      noBtn.style.display = "none";
+  });
+
+  // Set movement boundary range
+  const movementRange = 50; // No button moves max 50px in any direction
+
+  noBtn.addEventListener("mouseover", () => {
+      const wrapper = document.querySelector(".wrapper");
+      const wrapperRect = wrapper.getBoundingClientRect();
+      const noBtnRect = noBtn.getBoundingClientRect();
+
+      // Get the current position of the No button
+      const currentX = noBtn.offsetLeft;
+      const currentY = noBtn.offsetTop;
+
+      // Generate a new position within the limited range
+      let randomX = currentX + (Math.random() * movementRange * 2 - movementRange);
+      let randomY = currentY + (Math.random() * movementRange * 2 - movementRange);
+
+      // Ensure the button stays inside the wrapper
+      const minX = 10; // Set a minimum X boundary (padding)
+      const minY = 10; // Set a minimum Y boundary
+      const maxX = wrapperRect.width - noBtnRect.width - 10; // Maximum X boundary
+      const maxY = wrapperRect.height - noBtnRect.height - 10; // Maximum Y boundary
+
+      // Clamp values to keep the button inside the wrapper
+      randomX = Math.max(minX, Math.min(randomX, maxX));
+      randomY = Math.max(minY, Math.min(randomY, maxY));
+
+      // Apply the new position
+      noBtn.style.left = `${randomX}px`;
+      noBtn.style.top = `${randomY}px`;
+  });
+</script>
+
 </body>
 </html>
+
