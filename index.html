@@ -5,87 +5,87 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Random No Button</title>
   <style>
-/* style.css */
-body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Poppins', Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background: linear-gradient(135deg, #ffafbd, #ffc3a0);
-    color: #333;
-}
+    /* Embedded CSS */
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Poppins', Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: linear-gradient(135deg, #ffafbd, #ffc3a0);
+        color: #333;
+    }
 
-.wrapper {
-    position: relative;
-    width: 90%;
-    max-width: 500px;
-    text-align: center;
-    background: white;
-    padding: 30px 20px;
-    border-radius: 15px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-}
+    .wrapper {
+        position: relative;
+        width: 90%;
+        max-width: 500px;
+        text-align: center;
+        background: white;
+        padding: 30px 20px;
+        border-radius: 15px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
 
-.question {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 20px;
-    color: #333;
-}
+    .question {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 20px;
+        color: #333;
+    }
 
-.gif {
-    max-width: 100%;
-    height: auto;
-    margin-bottom: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-}
+    .gif {
+        max-width: 100%;
+        height: auto;
+        margin-bottom: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
 
-.btn-group {
-    display: flex;
-    justify-content: space-around;
-    gap: 15px;
-}
+    .btn-group {
+        display: flex;
+        justify-content: space-around;
+        gap: 15px;
+    }
 
-button {
-    padding: 12px 30px;
-    font-size: 18px;
-    font-weight: bold;
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: transform 0.3s ease, background-color 0.3s ease;
-}
+    button {
+        padding: 12px 30px;
+        font-size: 18px;
+        font-weight: bold;
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+        transition: transform 0.3s ease, background-color 0.3s ease;
+    }
 
-button:focus {
-    outline: none;
-}
+    button:focus {
+        outline: none;
+    }
 
-.yes-btn {
-    background-color: #4caf50;
-    color: white;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-}
+    .yes-btn {
+        background-color: #4caf50;
+        color: white;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
 
-.yes-btn:hover {
-    background-color: #45a049;
-    transform: scale(1.05);
-}
+    .yes-btn:hover {
+        background-color: #45a049;
+        transform: scale(1.05);
+    }
 
-.no-btn {
-    position: absolute;
-    background-color: #ff4d4d;
-    color: white;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-}
+    .no-btn {
+        position: absolute;
+        background-color: #ff4d4d;
+        color: white;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
 
-.no-btn:hover {
-    background-color: #e43e3e;
-    transform: scale(1.05);
-}
+    .no-btn:hover {
+        background-color: #e43e3e;
+        transform: scale(1.05);
+    }
   </style>
 </head>
 <body>
@@ -100,39 +100,39 @@ button:focus {
 </div>
 
 <script>
- const yesBtn = document.querySelector(".yes-btn");
-const noBtn = document.querySelector(".no-btn");
-const question = document.querySelector(".question");
-const gif = document.querySelector(".gif");
+  // JavaScript embedded
+  const yesBtn = document.querySelector(".yes-btn");
+  const noBtn = document.querySelector(".no-btn");
+  const question = document.querySelector(".question");
+  const gif = document.querySelector(".gif");
 
-// Change text and gif when the Yes button is clicked
-yesBtn.addEventListener("click", () => {
-    question.innerHTML = "I knew you would! Thank you ❤️";
-    gif.src = "https://media1.giphy.com/media/2703rOzfyCS5kYM6Hd/giphy.gif";
+  // Change text and gif when the Yes button is clicked
+  yesBtn.addEventListener("click", () => {
+      question.innerHTML = "I knew you would! Thank you ❤️";
+      gif.src = "https://media1.giphy.com/media/2703rOzfyCS5kYM6Hd/giphy.gif";
 
-    // Hide the No button
-    noBtn.style.display = "none";
-});
+      // Hide the No button
+      noBtn.style.display = "none";
+  });
 
-// Make the No button move randomly on hover
-noBtn.addEventListener("mouseover", () => {
-    const wrapper = document.querySelector(".wrapper");
-    const wrapperRect = wrapper.getBoundingClientRect();
-    const noBtnRect = noBtn.getBoundingClientRect();
+  // Make the No button move randomly on hover
+  noBtn.addEventListener("mouseover", () => {
+      const wrapper = document.querySelector(".wrapper");
+      const wrapperRect = wrapper.getBoundingClientRect();
+      const noBtnRect = noBtn.getBoundingClientRect();
 
-    // Calculate max positions to ensure the button stays within the wrapper
-    const maxX = wrapperRect.width - noBtnRect.width;
-    const maxY = wrapperRect.height - noBtnRect.height;
+      // Calculate max positions to ensure the button stays within the wrapper
+      const maxX = wrapperRect.width - noBtnRect.width;
+      const maxY = wrapperRect.height - noBtnRect.height;
 
-    // Ensure randomX and randomY are within the wrapper bounds
-    const randomX = Math.min(Math.floor(Math.random() * maxX), maxX);
-    const randomY = Math.min(Math.floor(Math.random() * maxY), maxY);
+      // Ensure randomX and randomY are within the wrapper bounds
+      const randomX = Math.min(Math.floor(Math.random() * maxX), maxX);
+      const randomY = Math.min(Math.floor(Math.random() * maxY), maxY);
 
-    noBtn.style.left = randomX + "px";
-    noBtn.style.top = randomY + "px";
-});
+      noBtn.style.left = randomX + "px";
+      noBtn.style.top = randomY + "px";
+  });
 </script>
 
 </body>
 </html>
-
